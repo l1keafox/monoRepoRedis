@@ -1,0 +1,40 @@
+{
+  "name": "Lanista",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "engines": {
+    "node": "18.x"
+  },
+  "scripts": {
+    "preinstall": "npx only-allow pnpm", 
+    "start:dev": "concurrently \"cd apps/client && npm run build\" \"cd apps/server && npm run server\" ",
+    "test":"jest",
+    "start": "npm run build && cd apps/server && node server.js",
+    "server": "cd apps/server && node server.js --ignore client",
+    "build": "cd apps/client && npm run build ",
+    "client": "cd apps/client && npm start",
+    "develop": "concurrently \"cd apps/server && npm run develop\" \"cd apps/client && npm run dev\"",
+    "dev": "concurrently \"cd apps/client && npm run dev\" \"cd apps/server && npm run develop\" ",
+    "seed": "cd apps/server && npm run seed",
+    "install-client": "cd apps/client && npm install",
+    "docker": "docker run -it --rm -p 8080:8080 imagename",
+    "heroku-postbuild": "npm run install-client && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/l1keafox/Lanista.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/l1keafox/Lanista/issues"
+  },
+  "homepage": "https://github.com/l1keafox/Lanista#readme",
+  "dependencies": {
+    "concurrently": "^7.4.0",
+    "jest": "^29.5.0",
+    "jsonwebtoken": "^8.5.1",
+    "node": "^19.6.0"
+  }
+}
